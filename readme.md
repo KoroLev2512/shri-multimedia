@@ -4,7 +4,7 @@
 
 <!-- 📹 [Смотреть демонстрацию работы](./demonstration.mp4) -->
 
-[<img src="https://img.youtube.com/vi/MR91YQ1bnPc" width="200" height="600"
+[<img src="https://img.youtube.com/vi/MR91YQ1bnPc/hqdefault.jpg" width="200" height="600"
 />](https://youtube.com/embed/MR91YQ1bnPc)
 
 На сегодняшний день сториз стали одним из самых успешных медиаформатов.
