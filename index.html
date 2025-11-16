@@ -1,78 +1,1105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
     <title>Stories</title>
 
     <link rel="stylesheet" href="http://localhost:3000/index.css" />
-</head>
+  </head>
 
-<body>
-<div class="root">
-    <div class="stop-screen" onclick="togglePlay()">
+  <body>
+    <div class="root">
+      <div class="stop-screen">
         <div class="stop-screen__plate"></div>
-        <svg class="stop-screen__button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path
-                d="M11.0748 7.50835C9.74622 6.72395 8.25 7.79065 8.25 9.21316V14.7868C8.25 16.2093 9.74622 17.276 11.0748 16.4916L15.795 13.7048C17.0683 12.953 17.0683 11.047 15.795 10.2952L11.0748 7.50835ZM9.75 9.21316C9.75 9.01468 9.84615 8.87585 9.95947 8.80498C10.0691 8.73641 10.1919 8.72898 10.3122 8.80003L15.0324 11.5869C15.165 11.6652 15.25 11.8148 15.25 12C15.25 12.1852 15.165 12.3348 15.0324 12.4131L10.3122 15.2C10.1919 15.271 10.0691 15.2636 9.95947 15.195C9.84615 15.1242 9.75 14.9853 9.75 14.7868V9.21316Z" />
-            <path
-                d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM2.75 12C2.75 6.89137 6.89137 2.75 12 2.75C17.1086 2.75 21.25 6.89137 21.25 12C21.25 17.1086 17.1086 21.25 12 21.25C6.89137 21.25 2.75 17.1086 2.75 12Z" />
+        <svg
+          class="stop-screen__button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11.0748 7.50835C9.74622 6.72395 8.25 7.79065 8.25 9.21316V14.7868C8.25 16.2093 9.74622 17.276 11.0748 16.4916L15.795 13.7048C17.0683 12.953 17.0683 11.047 15.795 10.2952L11.0748 7.50835ZM9.75 9.21316C9.75 9.01468 9.84615 8.87585 9.95947 8.80498C10.0691 8.73641 10.1919 8.72898 10.3122 8.80003L15.0324 11.5869C15.165 11.6652 15.25 11.8148 15.25 12C15.25 12.1852 15.165 12.3348 15.0324 12.4131L10.3122 15.2C10.1919 15.271 10.0691 15.2636 9.95947 15.195C9.84615 15.1242 9.75 14.9853 9.75 14.7868V9.21316Z"
+          />
+          <path
+            d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM2.75 12C2.75 6.89137 6.89137 2.75 12 2.75C17.1086 2.75 21.25 6.89137 21.25 12C21.25 17.1086 17.1086 21.25 12 21.25C6.89137 21.25 2.75 17.1086 2.75 12Z"
+          />
         </svg>
-    </div>
-    <div class="progress">
+      </div>
+      <div class="progress">
         <!-- script inserted progress-bars -->
-    </div>
-    <div class="stories" onclick="togglePlay()">
+      </div>
+      <div class="stories">
         <!-- script inserted stories -->
-    </div>
-    <button class="show-reactions-btn">👍</button>
-    <div class="controls">
+      </div>
+      <button class="show-reactions-btn">👍</button>
+      <div class="reactions">
+        <button class="reaction">👍</button>
+        <button class="reaction">❤️</button>
+        <button class="reaction">😂</button>
+        <button class="reaction">😮</button>
+        <button class="reaction">😢</button>
+      </div>
+      <div class="overlay"></div>
+      <div class="controls">
         <div class="controls__buttons">
-            <button onclick="prev()" class="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L9.83 12l5.58-5.59z" />
-                </svg>
-            </button>
-            <button onclick="next()" class="button button_next">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L9.83 12l5.58-5.59z" />
-                </svg>
-            </button>
+          <button
+            id="prev-btn"
+            onclick="prev()"
+            class="button"
+            aria-label="Предыдущий слайд"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L9.83 12l5.58-5.59z"
+              />
+            </svg>
+          </button>
+          <button
+            id="next-btn"
+            onclick="next()"
+            class="button button_next"
+            aria-label="Следующий слайд"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L9.83 12l5.58-5.59z"
+              />
+            </svg>
+          </button>
         </div>
+      </div>
     </div>
-</div>
 
-<script>
-    const videosSrc = [
-        'http://localhost:3000/assets/1.mp4',
-        'http://localhost:3000/assets/2.mp4',
-        'http://localhost:3000/assets/3.mp4',
-        'http://localhost:3000/assets/4.mp4',
-        'http://localhost:3000/assets/5.mp4',
-    ];
+    <script>
+      const videosSrc = [
+        "http://localhost:3000/assets/1.mp4",
+        "http://localhost:3000/assets/2.mp4",
+        "http://localhost:3000/assets/3.mp4",
+        "http://localhost:3000/assets/4.mp4",
+        "http://localhost:3000/assets/5.mp4",
+      ];
 
-    <!-- write your code here -->
+      // DOM элементы
+      const slider = document.querySelector(".stories");
+      const progressContainer = document.querySelector(".progress");
+      const stopScreen = document.querySelector(".stop-screen");
+      const showReactionsBtn = document.querySelector(".show-reactions-btn");
+      const reactionsPanel = document.querySelector(".reactions");
+      const overlay = document.querySelector(".overlay");
+      const reactionButtons = document.querySelectorAll(".reaction");
+      const prevBtn = document.getElementById("prev-btn");
+      const nextBtn = document.getElementById("next-btn");
 
-    function initStory(id, src) {
+      // Состояние приложения
+      let currentStoryIndex = 0;
+      let isPlaying = false;
+      let progressAnimationId = null;
+      let stories = [];
+      let reactionsVisible = false;
+      let timeUpdateHandlers = new Map(); // Для хранения обработчиков timeupdate
+      let wasPlayingBeforeReactions = false; // Сохраняем состояние воспроизведения перед открытием реакций
+
+      // Состояние для свайпов
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchEndX = 0;
+      let touchEndY = 0;
+      let isSwipeActive = false;
+      let isSwiping = false;
+      let swipeDirection = null; // 'left' или 'right'
+      let resetPositionTimeout = null; // Таймер для сброса позиций
+      const SWIPE_THRESHOLD = 50; // Минимальное расстояние для определения свайпа
+      const SWIPE_VERTICAL_THRESHOLD = 100; // Максимальное вертикальное отклонение
+      const SWIPE_ANIMATION_DURATION = 300; // Длительность анимации в миллисекундах
+
+      // Инициализация сториз
+      function initStory(id, src) {
+        // Для первого видео добавляем autoplay для автоматического запуска
+        const autoplayAttr = id === 0 ? "autoplay" : "";
         slider.insertAdjacentHTML(
-            'beforeend',
-            `<div class="stories__story">
-                <video id="video-${id}" class="stories__video" src="${src}"></video>
+          "beforeend",
+          `<div class="stories__story" data-story-id="${id}">
+                <video id="video-${id}" class="stories__video" src="${src}" loop="false" playsinline muted ${autoplayAttr}></video>
             </div>`,
         );
 
         progressContainer.insertAdjacentHTML(
-            'beforeend',
-            `<span class="progress__bar">
+          "beforeend",
+          `<span class="progress__bar" data-story-index="${id}">
                 <span id="progress-${id}" class="progress__bar-value"></span>
             </span>`,
         );
 
         return getStory(id);
-    }
-</script>
-</body>
+      }
 
+      function getStory(id) {
+        const storyElement = document.querySelector(`[data-story-id="${id}"]`);
+        const video = document.getElementById(`video-${id}`);
+        const progressBar = document.getElementById(`progress-${id}`);
+        const progressBarContainer = document.querySelector(
+          `.progress__bar[data-story-index="${id}"]`,
+        );
+        return {
+          id,
+          element: storyElement,
+          video,
+          progressBar,
+          progressBarContainer,
+        };
+      }
+
+      // Инициализация всех сториз
+      function initStories() {
+        videosSrc.forEach((src, index) => {
+          const story = initStory(index, src);
+          stories.push(story);
+
+          // Настройка видео
+          if (index === 0) {
+            // Для первого видео настраиваем автозапуск
+            const tryPlay = () => {
+              // Убираем muted и пытаемся запустить
+              story.video.muted = false;
+              story.video
+                .play()
+                .then(() => {
+                  isPlaying = true;
+                  updateStopScreen();
+                  startProgressAnimation();
+                })
+                .catch((err) => {
+                  // Если автозапуск заблокирован браузером, оставляем muted и запускаем
+                  console.warn("Autoplay blocked, playing muted:", err);
+                  story.video.muted = true;
+                  story.video
+                    .play()
+                    .then(() => {
+                      isPlaying = true;
+                      updateStopScreen();
+                      startProgressAnimation();
+                      // Пытаемся включить звук после первого взаимодействия пользователя
+                      document.addEventListener(
+                        "click",
+                        () => {
+                          if (story.video.muted) {
+                            story.video.muted = false;
+                          }
+                        },
+                        { once: true },
+                      );
+                    })
+                    .catch((err2) => {
+                      console.error("Error playing video:", err2);
+                    });
+                });
+            };
+
+            // Пытаемся запустить сразу, если метаданные уже загружены
+            if (story.video.readyState >= 1) {
+              tryPlay();
+            } else {
+              // Иначе ждем загрузки метаданных или canplay (что произойдет раньше)
+              let played = false;
+              const playOnce = () => {
+                if (!played) {
+                  played = true;
+                  tryPlay();
+                }
+              };
+              story.video.addEventListener("loadedmetadata", playOnce, {
+                once: true,
+              });
+              story.video.addEventListener("canplay", playOnce, { once: true });
+            }
+          }
+
+          story.video.addEventListener("ended", () => {
+            if (index === currentStoryIndex) {
+              next();
+            }
+          });
+
+          // Предзагрузка следующего видео
+          if (index < videosSrc.length - 1) {
+            story.video.preload = "auto";
+          }
+
+          // Обработчик клика по видео для паузы/воспроизведения
+          story.video.addEventListener("click", (e) => {
+            e.stopPropagation();
+            // Не обрабатываем клики, если открыта панель реакций
+            if (!reactionsVisible) {
+              togglePlay();
+            }
+          });
+
+          // Обработчики touch-событий для свайпов на видео
+          story.video.addEventListener("touchstart", handleTouchStart, {
+            passive: false,
+          });
+          story.video.addEventListener("touchmove", handleTouchMove, {
+            passive: false,
+          });
+          story.video.addEventListener("touchend", handleTouchEnd, {
+            passive: true,
+          });
+          story.video.addEventListener("touchcancel", () => {
+            if (isSwiping) {
+              resetStoryPositions();
+              isSwiping = false;
+            }
+            isSwipeActive = false;
+            swipeDirection = null;
+          });
+        });
+
+        // Показываем первый слайд
+        showStory(0);
+
+        // Добавляем обработчики кликов на прогресс-бары
+        stories.forEach((story, index) => {
+          if (story.progressBarContainer) {
+            story.progressBarContainer.addEventListener("click", (e) => {
+              e.stopPropagation();
+              goToStory(index);
+            });
+            // Делаем прогресс-бар кликабельным
+            story.progressBarContainer.style.cursor = "pointer";
+          }
+        });
+      }
+
+      // Переключение на слайд по индексу
+      function goToStory(index) {
+        if (index < 0 || index >= stories.length || index === currentStoryIndex) {
+          return;
+        }
+
+        const currentVideo = stories[currentStoryIndex].video;
+
+        // Удаляем обработчик timeupdate для текущего видео
+        if (timeUpdateHandlers.has(currentVideo)) {
+          const handler = timeUpdateHandlers.get(currentVideo);
+          currentVideo.removeEventListener("timeupdate", handler);
+          timeUpdateHandlers.delete(currentVideo);
+        }
+
+        currentVideo.pause();
+        currentVideo.currentTime = 0;
+
+        const targetVideo = stories[index].video;
+
+        showStory(index);
+        targetVideo.currentTime = 0;
+
+        // Функция для запуска целевого видео
+        const playTargetVideo = () => {
+          // Пытаемся запустить со звуком
+          targetVideo.muted = false;
+          targetVideo
+            .play()
+            .then(() => {
+              isPlaying = true;
+              updateStopScreen();
+              startProgressAnimation();
+            })
+            .catch((err) => {
+              // Если автозапуск заблокирован, запускаем без звука
+              console.warn("Autoplay blocked for target video, playing muted:", err);
+              targetVideo.muted = true;
+              targetVideo
+                .play()
+                .then(() => {
+                  isPlaying = true;
+                  updateStopScreen();
+                  startProgressAnimation();
+                  // Включаем звук после первого взаимодействия
+                  const enableSound = () => {
+                    if (targetVideo.muted) {
+                      targetVideo.muted = false;
+                    }
+                    document.removeEventListener("click", enableSound);
+                  };
+                  document.addEventListener("click", enableSound, { once: true });
+                })
+                .catch((err2) => {
+                  console.error("Error playing target video:", err2);
+                });
+            });
+        };
+
+        // Ждем готовности видео перед воспроизведением
+        if (targetVideo.readyState >= 2) {
+          playTargetVideo();
+        } else {
+          // Защита от двойного запуска
+          let played = false;
+          const playOnce = () => {
+            if (!played) {
+              played = true;
+              playTargetVideo();
+            }
+          };
+          targetVideo.addEventListener("loadeddata", playOnce, {
+            once: true,
+          });
+          targetVideo.addEventListener("canplay", playOnce, { once: true });
+        }
+      }
+
+      // Показать конкретный слайд
+      function showStory(index, offsetX = 0) {
+        if (index < 0 || index >= stories.length) return;
+
+        const containerWidth = slider.offsetWidth || 450;
+
+        // Показываем все слайды с правильным позиционированием
+        stories.forEach((story, i) => {
+          story.element.style.display = "flex";
+          const offset = (i - index) * containerWidth + offsetX;
+          story.element.style.transform = `translateX(${offset}px)`;
+          story.element.classList.remove("swiping");
+        });
+
+        // Сбрасываем прогресс-бары
+        stories.forEach((story, i) => {
+          if (i < index) {
+            story.progressBar.style.transform = "scaleX(1)";
+          } else if (i === index) {
+            story.progressBar.style.transform = "scaleX(0)";
+          } else {
+            story.progressBar.style.transform = "scaleX(0)";
+          }
+        });
+
+        currentStoryIndex = index;
+        updateControlsState();
+
+        // Если offsetX = 0 (обычное переключение), сбрасываем позиции после анимации
+        if (offsetX === 0) {
+          // Очищаем предыдущий таймер, если он есть
+          if (resetPositionTimeout) {
+            clearTimeout(resetPositionTimeout);
+          }
+          resetPositionTimeout = setTimeout(() => {
+            resetStoryPositions();
+            resetPositionTimeout = null;
+          }, SWIPE_ANIMATION_DURATION);
+        }
+      }
+
+      // Сброс позиций слайдов после завершения анимации
+      function resetStoryPositions() {
+        stories.forEach((story, i) => {
+          if (i === currentStoryIndex) {
+            story.element.style.display = "flex";
+            story.element.style.transform = "translateX(0)";
+          } else {
+            story.element.style.display = "none";
+          }
+          story.element.classList.remove("swiping");
+        });
+      }
+
+      // Обновление состояния контролов
+      function updateControlsState() {
+        // Обновляем состояние кнопок prev/next
+        if (prevBtn) {
+          prevBtn.disabled = currentStoryIndex === 0;
+          prevBtn.classList.toggle("button_disabled", currentStoryIndex === 0);
+        }
+        if (nextBtn) {
+          nextBtn.disabled = currentStoryIndex === stories.length - 1;
+          nextBtn.classList.toggle(
+            "button_disabled",
+            currentStoryIndex === stories.length - 1
+          );
+        }
+      }
+
+      // Переключение на следующий слайд
+      function next() {
+        if (currentStoryIndex < stories.length - 1) {
+          const currentVideo = stories[currentStoryIndex].video;
+          const nextIndex = currentStoryIndex + 1;
+          const nextVideo = stories[nextIndex].video;
+
+          // Удаляем обработчик timeupdate для текущего видео
+          if (timeUpdateHandlers.has(currentVideo)) {
+            const handler = timeUpdateHandlers.get(currentVideo);
+            currentVideo.removeEventListener("timeupdate", handler);
+            timeUpdateHandlers.delete(currentVideo);
+          }
+
+          currentVideo.pause();
+          currentVideo.currentTime = 0;
+
+          // Очищаем таймер сброса позиций перед переключением
+          if (resetPositionTimeout) {
+            clearTimeout(resetPositionTimeout);
+            resetPositionTimeout = null;
+          }
+
+          // Сбрасываем позиции перед переключением для корректной анимации
+          const containerWidth = slider.offsetWidth || 450;
+          stories.forEach((story, i) => {
+            story.element.style.display = "flex";
+            if (i === currentStoryIndex) {
+              story.element.style.transform = "translateX(0)";
+            } else if (i === nextIndex) {
+              story.element.style.transform = `translateX(${containerWidth}px)`;
+            } else {
+              const offset = (i - currentStoryIndex) * containerWidth;
+              story.element.style.transform = `translateX(${offset}px)`;
+            }
+            story.element.classList.remove("swiping");
+          });
+
+          // Небольшая задержка для начала анимации
+          requestAnimationFrame(() => {
+            currentStoryIndex = nextIndex;
+            const targetVideo = stories[currentStoryIndex].video;
+            showStory(currentStoryIndex);
+            targetVideo.currentTime = 0;
+
+            // Функция для запуска следующего видео
+            const playNextVideo = () => {
+              // Пытаемся запустить со звуком
+              targetVideo.muted = false;
+              targetVideo
+                .play()
+                .then(() => {
+                  isPlaying = true;
+                  updateStopScreen();
+                  startProgressAnimation();
+                })
+                .catch((err) => {
+                  // Если автозапуск заблокирован, запускаем без звука
+                  console.warn("Autoplay blocked for next video, playing muted:", err);
+                  targetVideo.muted = true;
+                  targetVideo
+                    .play()
+                    .then(() => {
+                      isPlaying = true;
+                      updateStopScreen();
+                      startProgressAnimation();
+                      // Включаем звук после первого взаимодействия
+                      const enableSound = () => {
+                        if (targetVideo.muted) {
+                          targetVideo.muted = false;
+                        }
+                        document.removeEventListener("click", enableSound);
+                      };
+                      document.addEventListener("click", enableSound, { once: true });
+                    })
+                    .catch((err2) => {
+                      console.error("Error playing next video:", err2);
+                    });
+                });
+            };
+
+            // Ждем готовности видео перед воспроизведением
+            if (targetVideo.readyState >= 2) {
+              playNextVideo();
+            } else {
+              // Защита от двойного запуска
+              let played = false;
+              const playOnce = () => {
+                if (!played) {
+                  played = true;
+                  playNextVideo();
+                }
+              };
+              targetVideo.addEventListener("loadeddata", playOnce, {
+                once: true,
+              });
+              // Также пробуем запустить при canplay
+              targetVideo.addEventListener("canplay", playOnce, {
+                once: true,
+              });
+            }
+          });
+        } else {
+          // Последний слайд - останавливаем прогресс
+          const currentVideo = stories[currentStoryIndex].video;
+          if (timeUpdateHandlers.has(currentVideo)) {
+            const handler = timeUpdateHandlers.get(currentVideo);
+            currentVideo.removeEventListener("timeupdate", handler);
+            timeUpdateHandlers.delete(currentVideo);
+          }
+          stopProgressAnimation();
+          isPlaying = false;
+          updateStopScreen();
+        }
+      }
+
+      // Переключение на предыдущий слайд
+      function prev() {
+        if (currentStoryIndex > 0) {
+          const currentVideo = stories[currentStoryIndex].video;
+
+          // Удаляем обработчик timeupdate для текущего видео
+          if (timeUpdateHandlers.has(currentVideo)) {
+            const handler = timeUpdateHandlers.get(currentVideo);
+            currentVideo.removeEventListener("timeupdate", handler);
+            timeUpdateHandlers.delete(currentVideo);
+          }
+
+          currentVideo.pause();
+          currentVideo.currentTime = 0;
+
+          // Очищаем таймер сброса позиций перед переключением
+          if (resetPositionTimeout) {
+            clearTimeout(resetPositionTimeout);
+            resetPositionTimeout = null;
+          }
+
+          // Сбрасываем позиции перед переключением для корректной анимации
+          const containerWidth = slider.offsetWidth || 450;
+          const prevIndex = currentStoryIndex - 1;
+          stories.forEach((story, i) => {
+            story.element.style.display = "flex";
+            if (i === currentStoryIndex) {
+              story.element.style.transform = "translateX(0)";
+            } else if (i === prevIndex) {
+              story.element.style.transform = `translateX(${-containerWidth}px)`;
+            } else {
+              const offset = (i - currentStoryIndex) * containerWidth;
+              story.element.style.transform = `translateX(${offset}px)`;
+            }
+            story.element.classList.remove("swiping");
+          });
+
+          // Небольшая задержка для начала анимации
+          requestAnimationFrame(() => {
+            currentStoryIndex = prevIndex;
+            const prevVideo = stories[currentStoryIndex].video;
+            showStory(currentStoryIndex);
+            prevVideo.currentTime = 0;
+          });
+
+          // Функция для запуска предыдущего видео
+          const playPrevVideo = () => {
+            // Пытаемся запустить со звуком
+            prevVideo.muted = false;
+            prevVideo
+              .play()
+              .then(() => {
+                isPlaying = true;
+                updateStopScreen();
+                startProgressAnimation();
+              })
+              .catch((err) => {
+                // Если автозапуск заблокирован, запускаем без звука
+                console.warn("Autoplay blocked for prev video, playing muted:", err);
+                prevVideo.muted = true;
+                prevVideo
+                  .play()
+                  .then(() => {
+                    isPlaying = true;
+                    updateStopScreen();
+                    startProgressAnimation();
+                    // Включаем звук после первого взаимодействия
+                    const enableSound = () => {
+                      if (prevVideo.muted) {
+                        prevVideo.muted = false;
+                      }
+                      document.removeEventListener("click", enableSound);
+                    };
+                    document.addEventListener("click", enableSound, { once: true });
+                  })
+                  .catch((err2) => {
+                    console.error("Error playing prev video:", err2);
+                  });
+              });
+          };
+
+          // Ждем готовности видео перед воспроизведением
+          if (prevVideo.readyState >= 2) {
+            playPrevVideo();
+          } else {
+            // Защита от двойного запуска
+            let played = false;
+            const playOnce = () => {
+              if (!played) {
+                played = true;
+                playPrevVideo();
+              }
+            };
+            prevVideo.addEventListener("loadeddata", playOnce, {
+              once: true,
+            });
+            // Также пробуем запустить при canplay
+            prevVideo.addEventListener("canplay", playOnce, {
+              once: true,
+            });
+          }
+        }
+      }
+
+      // Пауза/воспроизведение
+      function togglePlay() {
+        if (reactionsVisible) {
+          // Если открыта панель реакций, закрываем её
+          hideReactions();
+          return;
+        }
+
+        const currentVideo = stories[currentStoryIndex].video;
+
+        if (isPlaying) {
+          // Ставим на паузу
+          currentVideo.pause();
+          isPlaying = false;
+          stopProgressAnimation();
+          updateStopScreen();
+        } else {
+          // Возобновляем воспроизведение
+          currentVideo
+            .play()
+            .then(() => {
+              isPlaying = true;
+              updateStopScreen();
+              startProgressAnimation();
+            })
+            .catch((err) => {
+              console.error("Error playing video:", err);
+              // Если не удалось запустить, обновляем экран паузы
+              updateStopScreen();
+            });
+        }
+      }
+
+      // Обновление экрана паузы
+      function updateStopScreen() {
+        // Экран паузы виден только когда видео НЕ играет и панель реакций закрыта
+        if (!isPlaying && !reactionsVisible) {
+          stopScreen.classList.remove("stop-screen_playing");
+        } else {
+          stopScreen.classList.add("stop-screen_playing");
+        }
+      }
+
+      // Анимация прогресс-бара
+      function startProgressAnimation() {
+        stopProgressAnimation();
+
+        const currentStory = stories[currentStoryIndex];
+        const video = currentStory.video;
+        const progressBar = currentStory.progressBar;
+
+        if (!video || !progressBar || !video.duration) return;
+
+        // Удаляем старый обработчик, если есть
+        if (timeUpdateHandlers.has(video)) {
+          const oldHandler = timeUpdateHandlers.get(video);
+          video.removeEventListener("timeupdate", oldHandler);
+        }
+
+        // Функция обновления прогресса на основе времени видео
+        function updateProgress() {
+          if (!isPlaying || reactionsVisible || video.paused) {
+            return;
+          }
+
+          const currentTime = video.currentTime;
+          const duration = video.duration;
+
+          if (duration && duration > 0) {
+            const progress = Math.min(currentTime / duration, 1);
+            progressBar.style.transform = `scaleX(${progress})`;
+            progressBar.style.transition = "none";
+          }
+        }
+
+        // Сохраняем обработчик для последующего удаления
+        timeUpdateHandlers.set(video, updateProgress);
+        video.addEventListener("timeupdate", updateProgress);
+
+        // Начальное обновление
+        updateProgress();
+      }
+
+      function stopProgressAnimation() {
+        if (progressAnimationId) {
+          cancelAnimationFrame(progressAnimationId);
+          progressAnimationId = null;
+        }
+      }
+
+      // Показать панель реакций
+      function showReactions() {
+        reactionsVisible = true;
+        reactionsPanel.style.display = "flex";
+        overlay.style.display = "block";
+
+        // Сохраняем состояние воспроизведения и паузируем видео
+        const currentVideo = stories[currentStoryIndex].video;
+        wasPlayingBeforeReactions = isPlaying;
+        if (isPlaying) {
+          currentVideo.pause();
+          stopProgressAnimation();
+          isPlaying = false;
+        }
+
+        updateStopScreen();
+      }
+
+      // Скрыть панель реакций
+      function hideReactions() {
+        reactionsVisible = false;
+        reactionsPanel.style.display = "none";
+        overlay.style.display = "none";
+
+        // Возобновляем воспроизведение только если оно было запущено до открытия реакций
+        const currentVideo = stories[currentStoryIndex].video;
+        if (wasPlayingBeforeReactions && currentStoryIndex < stories.length) {
+          currentVideo.muted = false;
+          currentVideo
+            .play()
+            .then(() => {
+              isPlaying = true;
+              updateStopScreen();
+              startProgressAnimation();
+            })
+            .catch((err) => {
+              console.error("Error resuming video after reactions:", err);
+            });
+        }
+
+        updateStopScreen();
+      }
+
+      // Обработка свайпов
+      function handleTouchStart(e) {
+        // Не обрабатываем свайпы, если открыта панель реакций
+        if (reactionsVisible) {
+          return;
+        }
+
+        // Не обрабатываем свайпы на элементах управления
+        const target = e.target;
+        if (
+          target.closest(".show-reactions-btn") ||
+          target.closest(".reactions") ||
+          target.closest(".controls") ||
+          target.closest(".reaction") ||
+          target.closest(".stop-screen")
+        ) {
+          return;
+        }
+
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        isSwipeActive = true;
+      }
+
+      function handleTouchMove(e) {
+        if (!isSwipeActive) return;
+
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        // Предотвращаем скролл страницы при горизонтальном свайпе
+        if (Math.abs(deltaX) > 10) {
+          e.preventDefault();
+        }
+
+        // Проверяем, что это горизонтальный свайп
+        if (Math.abs(deltaY) > SWIPE_VERTICAL_THRESHOLD) {
+          return;
+        }
+
+        // Определяем направление свайпа
+        if (Math.abs(deltaX) > 10) {
+          isSwiping = true;
+          swipeDirection = deltaX > 0 ? "right" : "left";
+
+          // Показываем визуальную обратную связь во время свайпа
+          const containerWidth = slider.offsetWidth || 450;
+          const progress = Math.min(Math.abs(deltaX) / containerWidth, 1);
+          const offsetX = deltaX * 0.5; // Уменьшаем смещение для более плавного эффекта
+
+          // Добавляем класс swiping для отключения transition во время движения
+          stories.forEach((story) => {
+            story.element.classList.add("swiping");
+          });
+
+          // Обновляем позиции слайдов во время свайпа
+          if (swipeDirection === "left" && currentStoryIndex < stories.length - 1) {
+            // Свайп влево - показываем следующий слайд справа
+            showStory(currentStoryIndex, offsetX);
+            const nextStory = stories[currentStoryIndex + 1];
+            if (nextStory) {
+              nextStory.element.style.display = "flex";
+              const nextOffset = containerWidth + offsetX;
+              nextStory.element.style.transform = `translateX(${nextOffset}px)`;
+            }
+          } else if (swipeDirection === "right" && currentStoryIndex > 0) {
+            // Свайп вправо - показываем предыдущий слайд слева
+            showStory(currentStoryIndex, offsetX);
+            const prevStory = stories[currentStoryIndex - 1];
+            if (prevStory) {
+              prevStory.element.style.display = "flex";
+              const prevOffset = -containerWidth + offsetX;
+              prevStory.element.style.transform = `translateX(${prevOffset}px)`;
+            }
+          }
+        }
+      }
+
+      function handleTouchEnd(e) {
+        // Не обрабатываем свайпы, если открыта панель реакций
+        if (reactionsVisible) {
+          return;
+        }
+
+        // Не обрабатываем свайпы на элементах управления
+        const target = e.target;
+        if (
+          target.closest(".show-reactions-btn") ||
+          target.closest(".reactions") ||
+          target.closest(".controls") ||
+          target.closest(".reaction") ||
+          target.closest(".stop-screen")
+        ) {
+          return;
+        }
+
+        // Проверяем, что свайп был начат
+        if (!isSwipeActive) {
+          return;
+        }
+
+        const touch = e.changedTouches[0];
+        touchEndX = touch.clientX;
+        touchEndY = touch.clientY;
+
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+
+        // Проверяем, что это горизонтальный свайп (не вертикальный)
+        if (Math.abs(deltaY) > SWIPE_VERTICAL_THRESHOLD) {
+          // Сбрасываем состояние
+          isSwipeActive = false;
+          return; // Вертикальный свайп - игнорируем
+        }
+
+        // Проверяем минимальное расстояние для свайпа
+        if (Math.abs(deltaX) < SWIPE_THRESHOLD) {
+          // Слишком короткий свайп - возвращаемся к текущему слайду
+          if (isSwiping) {
+            resetStoryPositions();
+            isSwiping = false;
+          }
+          isSwipeActive = false;
+          swipeDirection = null;
+          return;
+        }
+
+        // Определяем направление свайпа и переключаемся
+        const containerWidth = slider.offsetWidth || 450;
+        const swipeProgress = Math.abs(deltaX) / containerWidth;
+
+        // Если свайп был достаточно длинным (больше 30% ширины), переключаемся
+        if (swipeProgress > 0.3 || Math.abs(deltaX) > SWIPE_THRESHOLD) {
+          // Убираем класс swiping для включения плавной анимации
+          stories.forEach((story) => {
+            story.element.classList.remove("swiping");
+          });
+
+          if (deltaX > 0) {
+            // Свайп вправо - предыдущий слайд
+            if (currentStoryIndex > 0) {
+              prev();
+            } else {
+              resetStoryPositions();
+            }
+          } else {
+            // Свайп влево - следующий слайд
+            if (currentStoryIndex < stories.length - 1) {
+              next();
+            } else {
+              resetStoryPositions();
+            }
+          }
+        } else {
+          // Свайп был недостаточно длинным - возвращаемся к текущему слайду
+          resetStoryPositions();
+        }
+
+        // Сбрасываем состояние после обработки свайпа
+        isSwipeActive = false;
+        isSwiping = false;
+        swipeDirection = null;
+      }
+
+      // Обработка клика по реакции
+      function handleReactionClick(reaction) {
+        const currentStory = stories[currentStoryIndex];
+        const storyElement = currentStory.element;
+
+        // Создаем летящую реакцию
+        const flyingReaction = document.createElement("div");
+        flyingReaction.className = "flying-reaction";
+        flyingReaction.textContent = reaction;
+        flyingReaction.style.left = `${Math.random() * 80 + 10}%`;
+        storyElement.appendChild(flyingReaction);
+
+        // Удаляем после анимации
+        setTimeout(() => {
+          flyingReaction.remove();
+        }, 500);
+
+        // Закрываем панель реакций
+        hideReactions();
+      }
+
+      // Обработчики событий
+      showReactionsBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        showReactions();
+      });
+
+      overlay.addEventListener("click", (e) => {
+        e.stopPropagation();
+        hideReactions();
+      });
+
+      reactionButtons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          e.stopPropagation();
+          handleReactionClick(button.textContent);
+        });
+      });
+
+      // Инициализация при загрузке страницы
+      document.addEventListener("DOMContentLoaded", () => {
+        // Скрываем панель реакций и overlay изначально
+        reactionsPanel.style.display = "none";
+        overlay.style.display = "none";
+        // Изначально скрываем экран паузы, так как видео будет играть автоматически
+        stopScreen.classList.add("stop-screen_playing");
+
+        // Обработчик клика по экрану паузы для возобновления воспроизведения
+        stopScreen.addEventListener("click", (e) => {
+          e.stopPropagation();
+          // Не обрабатываем клики, если открыта панель реакций
+          if (!reactionsVisible) {
+            togglePlay();
+          }
+        });
+
+        // Обработчик клика по области сториз для паузы/воспроизведения
+        slider.addEventListener("click", (e) => {
+          // Не обрабатываем клики по кнопкам и реакциям
+          if (
+            e.target.closest(".show-reactions-btn") ||
+            e.target.closest(".reactions") ||
+            e.target.closest(".controls") ||
+            e.target.closest(".reaction") ||
+            e.target.closest(".stop-screen") ||
+            e.target.closest(".stories__video")
+          ) {
+            return;
+          }
+          // Обрабатываем клики по области сториз (но не по самому видео, т.к. у видео свой обработчик)
+          if (
+            e.target.classList.contains("stories__story") ||
+            e.target === slider
+          ) {
+            togglePlay();
+          }
+        });
+
+        initStories();
+
+        // Инициализируем состояние контролов после загрузки сториз
+        setTimeout(() => {
+          updateControlsState();
+        }, 100);
+
+        // Обработчики touch-событий для свайпов на контейнере сториз
+        slider.addEventListener("touchstart", handleTouchStart, {
+          passive: false,
+        });
+        slider.addEventListener("touchmove", handleTouchMove, {
+          passive: false,
+        });
+        slider.addEventListener("touchend", handleTouchEnd, {
+          passive: true,
+        });
+        slider.addEventListener("touchcancel", () => {
+          if (isSwiping) {
+            resetStoryPositions();
+            isSwiping = false;
+          }
+          isSwipeActive = false;
+          swipeDirection = null;
+        });
+
+        // Поддержка клавиатурных сокращений
+        document.addEventListener("keydown", (e) => {
+          // Предотвращаем обработку, если пользователь вводит текст
+          if (
+            e.target.tagName === "INPUT" ||
+            e.target.tagName === "TEXTAREA" ||
+            e.target.isContentEditable
+          ) {
+            return;
+          }
+
+          switch (e.key) {
+            case "ArrowLeft":
+              e.preventDefault();
+              prev();
+              break;
+            case "ArrowRight":
+              e.preventDefault();
+              next();
+              break;
+            case " ":
+            case "Spacebar":
+              e.preventDefault();
+              togglePlay();
+              break;
+            case "r":
+            case "R":
+              e.preventDefault();
+              if (!reactionsVisible) {
+                showReactions();
+              }
+              break;
+            case "Escape":
+              e.preventDefault();
+              if (reactionsVisible) {
+                hideReactions();
+              }
+              break;
+          }
+        });
+      });
+
+      // Глобальные функции для вызова из HTML
+      window.togglePlay = togglePlay;
+      window.next = next;
+      window.prev = prev;
+    </script>
+  </body>
 </html>
