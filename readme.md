@@ -3,8 +3,8 @@
 ## Демонстрация работы
 
 <video width="100%" controls>
-  <source src="demonstration.mp4" type="video/quicktime">
-  Ваш браузер не поддерживает воспроизведение видео. <a href="Demonstration.mov">Скачать видео</a>
+  <source src="https://raw.githubusercontent.com/KoroLev2512/shri-multimedia/main/demonstration.mp4" type="video/mp4">
+  Ваш браузер не поддерживает воспроизведение видео. <a href="https://github.com/KoroLev2512/shri-multimedia/blob/main/demonstration.mp4">Скачать видео</a>
 </video>
 
 На сегодняшний день сториз стали одним из самых успешных медиаформатов.
